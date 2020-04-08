@@ -316,7 +316,7 @@ var ScheduleSelector = function (_React$Component) {
     if (selectionStart && selectionEnd && selectionType) {
       newSelection = this.selectionSchemeHandlers[this.props.selectionScheme](selectionStart, selectionEnd, this.dates);
     }
-
+    /*
     var nextDraft = [].concat(this.props.selection);
     if (selectionType === 'add') {
       nextDraft = Array.from(new Set([].concat(nextDraft, newSelection)));
@@ -326,9 +326,9 @@ var ScheduleSelector = function (_React$Component) {
           return (0, _is_same_minute2.default)(a, b);
         });
       });
-    }
+    }*/
 
-    this.setState({ selectionDraft: nextDraft }, callback);
+    this.setState({ selectionDraft: newSelection }, callback);
   };
 
   // Isomorphic (mouse and touch) handler since starting a selection works the same way for both classes of user input
