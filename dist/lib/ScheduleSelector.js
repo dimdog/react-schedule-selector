@@ -327,7 +327,8 @@ var ScheduleSelector = function (_React$Component) {
         });
       });
     }*/
-
+    console.log("testing within...");
+    console.log(newSelection);
     this.setState({ selectionDraft: newSelection }, callback);
   };
 
