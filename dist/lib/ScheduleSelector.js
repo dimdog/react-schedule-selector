@@ -271,7 +271,7 @@ var ScheduleSelector = function (_React$Component) {
 
   ScheduleSelector.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
     this.setState({
-      selectionDraft: []//.concat(nextProps.selection)
+      selectionDraft: [].concat(nextProps.selection)
     });
   };
 
