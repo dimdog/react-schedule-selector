@@ -237,14 +237,9 @@ export default class ScheduleSelector extends React.Component<PropsType, StateTy
     if (selectionStart && selectionEnd && selectionType) {
       newSelection = this.selectionSchemeHandlers[this.props.selectionScheme](selectionStart, selectionEnd, this.dates)
     }
-
-    //let nextDraft = [...this.props.selection]
-    let nextDraft = []
-    if (selectionType === 'add') {
-      nextDraft = Array.from(new Set([...nextDraft, ...newSelection]))
-    }
-
-    this.setState({ selectionDraft: nextDraft }, callback)
+    console.log("testing from within...");
+    console.log(newSelection);
+    this.setState({ selectionDraft: newSelection }, callback)
   }
 
   // Isomorphic (mouse and touch) handler since starting a selection works the same way for both classes of user input
