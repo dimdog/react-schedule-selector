@@ -244,13 +244,7 @@ var ScheduleSelector = function (_React$Component) {
   }
 
   ScheduleSelector.prototype.componentDidMount = function componentDidMount() {
-    // We need to add the endSelection event listener to the document itself in order
-    // to catch the cases where the users ends their mouse-click somewhere besides
-    // the date cells (in which case none of the DateCell's onMouseUp handlers would fire)
-    //
-    // This isn't necessary for touch events since the `touchend` event fires on
-    // the element where the touch/drag started so it's always caught.
-    document.addEventListener('mouseup', this.endSelection);
+
 
     // Prevent page scrolling when user is dragging on the date cells
     this.cellToDate.forEach(function (value, dateCell) {
@@ -294,6 +288,7 @@ var ScheduleSelector = function (_React$Component) {
   };
 
   ScheduleSelector.prototype.endSelection = function endSelection() {
+    document.removeEventListener('mouseup', this.endSelection);
     this.props.onChange(this.state.selectionDraft);
     this.setState({
       selectionType: null,
@@ -334,6 +329,13 @@ var ScheduleSelector = function (_React$Component) {
 
 
   ScheduleSelector.prototype.handleSelectionStartEvent = function handleSelectionStartEvent(startTime) {
+    // We need to add the endSelection event listener to the document itself in order
+    // to catch the cases where the users ends their mouse-click somewhere besides
+    // the date cells (in which case none of the DateCell's onMouseUp handlers would fire)
+    //
+    // This isn't necessary for touch events since the `touchend` event fires on
+    // the element where the touch/drag started so it's always caught.
+    document.addEventListener('mouseup', this.endSelection);
     // Check if the startTime cell is selected/unselected to determine if this drag-select should
     // add values or remove values
     var timeSelected = this.props.selection.find(function (a) {
